@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -154,13 +154,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -409,8 +409,8 @@ const STEPS = [
     setDot(1); setHUD('FACILITY ONLINE'); setProgress(8);
     hospitalGroup.visible = true;
     hospitalGroup.scale.setScalar(0.01);
-    setCaption('The modern hospital.  A miracle of logistics.  2020: personal protective equipment ran out in six weeks.  Not because there wasn\'t enough — because the supply chain was designed for efficiency, not survival.');
-    speak('The modern hospital. A miracle of logistics. 2020: personal protective equipment ran out in six weeks. Not because there was not enough — because the supply chain was designed for efficiency, not survival.');
+    setCaption('We assume the modern hospital is a fortress of capability.  A miracle of logistics.  But in 2020, personal protective equipment ran out in six weeks.  Not because there wasn\'t enough — because the supply chain was built for efficiency, not survival.');
+    speak('We assume the modern hospital is a fortress of capability. A miracle of logistics. But in 2020, personal protective equipment ran out in six weeks. Not because there was not enough — because the supply chain was built for efficiency, not survival.');
   }, tick(e) {
     const t = Math.min(1, e * 0.5);
     hospitalGroup.scale.setScalar(0.01 + t * 0.99);
@@ -427,8 +427,8 @@ const STEPS = [
     }
     wasteGeo.attributes.position.needsUpdate = true;
     wasteParticles.material.opacity = 0.7;
-    setCaption('Every day: tonnes of medical waste. Infectious. Costly. Dangerous to dispose.');
-    speak('Every day: tonnes of medical waste. Infectious. Costly. Dangerous to dispose.');
+    setCaption('What you might not know:  a hospital discards tonnes of material every day.  Infectious. Costly. Dangerous to dispose.  The very same atoms it is desperately ordering back in.');
+    speak('What you might not know: a hospital discards tonnes of material every day. Infectious. Costly. Dangerous to dispose. The very same atoms it is desperately ordering back in.');
   }, tick(e) {
     for (let i = 0; i < WN; i++) {
       wasteArr[i*3]   += (3 - wasteArr[i*3])   * 0.022;
@@ -443,8 +443,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(3); setHUD('DISINTEGRATOR ACTIVE'); setProgress(30);
     disintGroup.visible = true;
-    setCaption('A disintegrator processes it all. Plasma at 3000 degrees Celsius. Everything breaks to atoms.');
-    speak('A disintegrator processes it all. Plasma at 3000 degrees Celsius. Everything breaks to atoms.');
+    setCaption('But what if that waste never left the building?  A disintegrator processes it all.  Plasma at 3000 degrees Celsius.  Everything breaks to atoms.');
+    speak('But what if that waste never left the building? A disintegrator processes it all. Plasma at 3000 degrees Celsius. Everything breaks to atoms.');
   }, tick(e) {
     const t = Math.min(1, e * 0.35);
     disintEdge.material.opacity = t * 0.9;

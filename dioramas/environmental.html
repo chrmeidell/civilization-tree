@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#002233;
+  font-size:9px; letter-spacing:2px; color:#3a9ac0;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -150,14 +150,29 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000508);
-scene.fog = new THREE.FogExp2(0x000508, 0.04);
+function makeSky(topHex, horizonHex) {
+  const c = document.createElement('canvas');
+  c.width = 16; c.height = 256;
+  const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, 0, 256);
+  grad.addColorStop(0.00, topHex);
+  grad.addColorStop(0.52, topHex);
+  grad.addColorStop(0.70, horizonHex);
+  grad.addColorStop(0.78, horizonHex);
+  grad.addColorStop(1.00, topHex);
+  g.fillStyle = grad; g.fillRect(0, 0, 16, 256);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
+  return tex;
+}
+scene.background = makeSky('#0a141e', '#2a5074');
+scene.fog = new THREE.FogExp2(0x1a3a52, 0.04);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 5, 12);
 camera.lookAt(0, 0, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
 const keyL = new THREE.DirectionalLight(0x00aaff, 1.8);
 keyL.position.set(-4, 10, 6); scene.add(keyL);
 
@@ -372,8 +387,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(1); setHUD('DEAD ZONE DETECTED'); setProgress(8);
     ocean.material.color.set(0x110022);
-    setCaption('The Gulf of Mexico.  22,000 square kilometres.  No oxygen.  No fish.  No life.  The Baltic Sea: 70,000 square kilometres, the same.  Two hundred dead zones worldwide — and growing.  Created by us.  With fertilizer.');
-    speak('The Gulf of Mexico. 22,000 square kilometres. No oxygen. No fish. No life. The Baltic Sea: 70,000 square kilometres, the same. Two hundred dead zones worldwide — and growing. Created by us. With fertilizer.');
+    setCaption('We assume saving the planet means emitting less.  Shrinking our footprint.  But look here:  the Gulf of Mexico.  22,000 square kilometres.  No oxygen.  No fish.  No life.  A dead zone we made.  With fertilizer.');
+    speak('We assume saving the planet means emitting less. Shrinking our footprint. But look here: the Gulf of Mexico. 22,000 square kilometres. No oxygen. No fish. No life. A dead zone we made. With fertilizer.');
   }, tick(e) {
     deadSpheres.forEach((d, i) => {
       d.mesh.position.y = Math.sin(e * 0.8 + i) * 0.08;
@@ -386,8 +401,8 @@ const STEPS = [
   // 2 — the cause (6s)
   { dur:6, enter() {
     setDot(2); setHUD('CAUSE ANALYSIS'); setProgress(18);
-    setCaption('Nitrogen runoff.  Algae blooms.  Oxygen collapse.  We broke the regulator.');
-    speak('Nitrogen runoff. Algae blooms. Oxygen collapse. We broke the regulator.');
+    setCaption('What you might not know:  the Earth already absorbs our carbon — for free — through living systems.  Nitrogen runoff.  Algae blooms.  Oxygen collapse.  We did not just add emissions.  We broke the machines that remove them.');
+    speak('What you might not know: the Earth already absorbs our carbon — for free — through living systems. Nitrogen runoff. Algae blooms. Oxygen collapse. We did not just add emissions. We broke the machines that remove them.');
     // Red warning particles
     for (let i = 0; i < N; i++) {
       const a = Math.random() * Math.PI * 2;
@@ -414,8 +429,8 @@ const STEPS = [
   // 3 — introducing phytoplankton (7s)
   { dur:7, enter() {
     setDot(3); setHUD('RESTORATION SEEDING'); setProgress(28);
-    setCaption('Phytoplankton.  Two micrometres.  Produces half of Earth\'s oxygen.  The base of the entire marine food chain.  Absorbs 30 percent of all human carbon emissions.  The most important organism on this planet, and it is invisible to the naked eye.  Close the nitrogen loop — from the farming diorama — and the runoff stops.  The bloom returns on its own.');
-    speak('Phytoplankton. Two micrometres. Produces half of Earth\'s oxygen. The base of the entire marine food chain. Absorbs 30 percent of all human carbon emissions. The most important organism on this planet, and it is invisible to the naked eye. Close the nitrogen loop — and the runoff stops. The bloom returns on its own.');
+    setCaption('But what if we restored it?  Phytoplankton.  Two micrometres.  Produces half of Earth\'s oxygen.  The base of the entire marine food chain.  Absorbs 30 percent of all human carbon.  Close the nitrogen loop — and the runoff stops.  The bloom returns on its own.');
+    speak('But what if we restored it? Phytoplankton. Two micrometres. Produces half of Earth\'s oxygen. The base of the entire marine food chain. Absorbs 30 percent of all human carbon. Close the nitrogen loop — and the runoff stops. The bloom returns on its own.');
     // Shift to green
     for (let i = 0; i < N; i++) {
       pColors[i*3]   = 0.0;

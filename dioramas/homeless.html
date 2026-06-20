@@ -97,7 +97,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 /* ── DATA READOUT (HUD) ───────────────────── */
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -163,13 +163,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -347,6 +347,67 @@ for (let i = 0; i < 6; i++) {
   scanLines.add(ln);
 }
 
+// ─── CLOTHING (warm garment — materializes, then dresses the person) ──
+
+const clothingGroup = new THREE.Group();
+clothingGroup.position.set(2.5, 0.5, 0.5);   // starts floating inside container
+clothingGroup.visible = false;
+scene.add(clothingGroup);
+
+// Coat — open-ended cylinder shell, slightly larger than the body
+const coatGeo = new THREE.CylinderGeometry(0.34, 0.42, 1.08, 14, 1, true);
+const coatFill = glowMesh(coatGeo, 0xffaa44, 0.0);
+coatFill.position.y = 0.85;
+const coatEdge = glowEdge(coatGeo, 0xffcc66, 0.0);
+coatEdge.position.y = 0.85;
+clothingGroup.add(coatFill); clothingGroup.add(coatEdge);
+
+// Collar — torus around the neck
+const collarGeo = new THREE.TorusGeometry(0.27, 0.055, 8, 20);
+const collar = glowMesh(collarGeo, 0xffcc66, 0.0);
+collar.rotation.x = Math.PI / 2;
+collar.position.y = 1.44;
+const collarEdge = glowEdge(collarGeo, 0xffddaa, 0.0);
+collarEdge.rotation.x = Math.PI / 2;
+collarEdge.position.y = 1.44;
+clothingGroup.add(collar); clothingGroup.add(collarEdge);
+
+// Sleeves — two angled cylinders down the sides
+const sleeves = [];
+[-0.34, 0.34].forEach(x => {
+  const slGeo = new THREE.CylinderGeometry(0.085, 0.10, 0.78, 8);
+  const sl = glowMesh(slGeo, 0xffaa44, 0.0);
+  sl.position.set(x, 0.92, 0);
+  sl.rotation.z = x > 0 ? 0.16 : -0.16;
+  const sle = glowEdge(slGeo, 0xffcc66, 0.0);
+  sle.position.set(x, 0.92, 0);
+  sle.rotation.z = x > 0 ? 0.16 : -0.16;
+  clothingGroup.add(sl); clothingGroup.add(sle);
+  sleeves.push(sl, sle);
+});
+
+// Hem band — bright ring at the bottom edge
+const hemGeo = new THREE.TorusGeometry(0.40, 0.03, 6, 24);
+const hem = glowMesh(hemGeo, 0xffcc66, 0.0);
+hem.rotation.x = Math.PI / 2;
+hem.position.y = 0.32;
+clothingGroup.add(hem);
+
+const clothingLight = new THREE.PointLight(0xffaa44, 0, 5);
+clothingLight.position.y = 1.0;
+clothingGroup.add(clothingLight);
+
+// Convenience: set opacity across the whole garment
+const clothingParts = [coatFill, coatEdge, collar, collarEdge, hem, ...sleeves];
+function setClothingOpacity(o) {
+  coatFill.material.opacity = o * 0.28;
+  coatEdge.material.opacity = o * 0.95;
+  collar.material.opacity = o * 0.35;
+  collarEdge.material.opacity = o * 0.95;
+  hem.material.opacity = o * 0.9;
+  sleeves.forEach((m, i) => { m.material.opacity = (i % 2 === 0) ? o * 0.25 : o * 0.85; });
+}
+
 // ─── PARTICLES ──────────────────────────────
 
 const N = 220;
@@ -442,8 +503,8 @@ const STEPS = [
     personGroup.visible = true;
     personGroup.scale.setScalar(0.01);
     personLight.intensity = 0;
-    setCaption('A person.  On a street.  Six months.  Not a statistic.  A life interrupted.');
-    speak('A person. On a street. Six months. Not a statistic. A life interrupted.');
+    setCaption('We assume homelessness is a problem of people.  Bad luck.  Bad choices.  Broken lives.  A person on a street.  Six months.  And we look away.');
+    speak('We assume homelessness is a problem of people. Bad luck. Bad choices. Broken lives. A person on a street. Six months. And we look away.');
   }, tick(e) {
     const t = Math.min(1, e * 0.55);
     personGroup.scale.setScalar(t);
@@ -456,8 +517,8 @@ const STEPS = [
     setDot(2); setHUD('CONTAINER DEPLOYED');
     setProgress(18);
     contGroup.visible = true;
-    setCaption('A container arrives.  Not a shelter.  A manufacturing unit.');
-    speak('A container arrives. Not a shelter. A manufacturing unit.');
+    setCaption('What you might not know:  everything she needs to be warm, fed, and clothed is already here — discarded on this very street.  A container arrives.  Not a shelter.  A manufacturing unit.');
+    speak('What you might not know: everything she needs to be warm, fed, and clothed is already here — discarded on this very street. A container arrives. Not a shelter. A manufacturing unit.');
     // scatter particles toward container
     for (let i = 0; i < N; i++) {
       const a = Math.random() * Math.PI * 2, r = 6 + Math.random() * 8;
@@ -489,8 +550,8 @@ const STEPS = [
     setProgress(30);
     robotGroup.visible = true;
     robotGroup.position.set(6, 0, 1.5);
-    setCaption('A robot approaches.  Its only directive:  meet needs.');
-    speak('A robot approaches. Its only directive: meet needs.');
+    setCaption('But what if a system could simply respond?  No application.  No judgment.  A robot approaches.  Its only directive:  meet needs.');
+    speak('But what if a system could simply respond? No application. No judgment. A robot approaches. Its only directive: meet needs.');
     particles.material.opacity = 0;
   }, tick(e) {
     robotGroup.position.x += (-0.3 - robotGroup.position.x) * 0.04;
@@ -552,32 +613,80 @@ const STEPS = [
     setProgress(50 + (e/7)*10);
   }},
 
-  // 6 — synthesis (6s)
-  { dur:6, enter() {
+  // 6 — synthesis: the garment materializes inside the container (7s)
+  { dur:7, enter() {
     setDot(6); setHUD('SYNTHESIZING');
     setProgress(60);
-    setCaption('Manufacturing to exact specification.  Every measurement used.');
-    speak('Manufacturing to exact specification. Every measurement used.');
+    clothingGroup.visible = true;
+    clothingGroup.position.set(2.5, 0.5, 0.5);
+    clothingGroup.scale.setScalar(0.01);
+    clothingGroup.rotation.y = 0;
+    setClothingOpacity(0);
+    clothingLight.intensity = 0;
+    setCaption('Manufacturing to exact specification.  The recovered atoms become thread.  The thread becomes cloth.  A coat — woven to fit this body, and no other.');
+    speak('Manufacturing to exact specification. The recovered atoms become thread. The thread becomes cloth. A coat, woven to fit this body, and no other.');
   }, tick(e) {
+    const t = Math.min(1, e * 0.32);
     contGlow.intensity = 2 + Math.sin(e * 8) * 1;
-    particles.material.opacity = 0.8 - (e/6) * 0.7;
-    setProgress(60 + (e/6)*10);
+    // garment grows from nothing, rotating as it forms
+    clothingGroup.scale.setScalar(t);
+    clothingGroup.rotation.y = e * 1.4;
+    setClothingOpacity(t);
+    clothingLight.intensity = t * 1.4 + Math.sin(e * 6) * 0.3;
+    // remaining particles spiral inward and vanish into the garment
+    for (let i = 0; i < N; i++) {
+      pArr[i*3]   += (2.5 - pArr[i*3])   * 0.05;
+      pArr[i*3+1] += (0.9 - pArr[i*3+1]) * 0.05;
+      pArr[i*3+2] += (0.5 - pArr[i*3+2]) * 0.05;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    particles.material.color.set(0xffaa44);
+    particles.material.opacity = 0.8 - (e/7) * 0.8;
+    setProgress(60 + (e/7)*10);
   }},
 
-  // 7 — delivery (7s)
-  { dur:7, enter() {
+  // 7 — delivery: the garment travels to the person and dresses them (8s)
+  { dur:8, enter() {
     setDot(7); setHUD('DELIVERY COMPLETE');
     setProgress(70);
     particles.material.opacity = 0;
     contGlow.intensity = 0.5;
-    setCaption('Twelve minutes.  Fitted clothing.  A hot meal.  Basic medicine.  A shelter panel.  All from the waste around them.  Warm.  Fed.  Seen.');
-    speak('Twelve minutes. Fitted clothing. A hot meal. Basic medicine. A shelter panel. All from the waste around them. Warm. Fed. Seen.');
+    setClothingOpacity(1);
+    clothingLight.intensity = 1.4;
+    setCaption('Twelve minutes.  The coat lifts, crosses the space, and settles onto her shoulders.  Fitted.  Warm.  Hers.  From the waste around her.');
+    speak('Twelve minutes. The coat lifts, crosses the space, and settles onto her shoulders. Fitted. Warm. Hers. From the waste around her.');
   }, tick(e) {
-    // Robot moves to person
+    // Garment flies from the container to the person and settles on the body
+    const px = -1.2, py = 0, pz = 2;
+    clothingGroup.position.x += (px - clothingGroup.position.x) * 0.045;
+    clothingGroup.position.y += (py - clothingGroup.position.y) * 0.045;
+    clothingGroup.position.z += (pz - clothingGroup.position.z) * 0.045;
+    // settle the spin to face forward
+    clothingGroup.rotation.y += (0 - clothingGroup.rotation.y) * 0.06;
+    clothingGroup.scale.setScalar(1);
+
+    // how close the garment is to the body (0 far → 1 dressed)
+    const dx = clothingGroup.position.x - px;
+    const dz = clothingGroup.position.z - pz;
+    const dist = Math.sqrt(dx*dx + dz*dz);
+    const dressed = Math.max(0, Math.min(1, 1 - dist / 3.7));
+
+    // the person warms from cold cyan toward amber as the coat settles
+    bodyMesh.material.color.setHSL(0.5 - dressed * 0.42, 1, 0.5);
+    bodyEdge.material.color.setHSL(0.5 - dressed * 0.42, 1, 0.55);
+    headMesh.material.color.setHSL(0.5 - dressed * 0.30, 1, 0.5);
+    headEdge.material.color.setHSL(0.5 - dressed * 0.30, 1, 0.55);
+    personLight.color.setHSL(0.5 - dressed * 0.42, 1, 0.5);
+    personLight.intensity = 1.5 + dressed * 1.0;
+
+    // a warm settling pulse once dressed
+    clothingLight.intensity = 1.2 + dressed * 0.8 + Math.sin(e * 4) * 0.2 * dressed;
+
+    // Robot stays near, watching
     robotGroup.position.x += (0.3 - robotGroup.position.x) * 0.03;
     robotGroup.position.z += (1.85 - robotGroup.position.z) * 0.03;
     robotLight.intensity = 0.5 + Math.sin(e * 2) * 0.2;
-    setProgress(70 + (e/7)*10);
+    setProgress(70 + (e/8)*10);
   }},
 
   // 8 — statement (8s)
@@ -651,6 +760,11 @@ function animate() {
   // Breathing — person
   if (personGroup.visible) {
     personGroup.position.y = Math.sin(t * 1.1) * 0.025;
+  }
+
+  // Once dressed, the garment breathes with the person
+  if (clothingGroup.visible && step >= 8) {
+    clothingGroup.position.y = personGroup.position.y;
   }
 
   // Robot sensor pulse

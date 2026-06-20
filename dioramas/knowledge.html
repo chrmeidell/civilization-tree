@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none; line-height:1.8;
 }
 
@@ -153,13 +153,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -351,8 +351,8 @@ const STEPS = [
     vaultFill.material.opacity = 0;
     lockMesh.material.opacity = 0;
     // fade vault in
-    setCaption('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Locked.  And 50 percent of all clinical trials — the ones that showed a drug doesn\'t work — never published.  Not because the result was wrong.  Because the result wasn\'t profitable.  The lock is not just secrecy.  It is selective silence.');
-    speak('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Locked. And 50 percent of all clinical trials — the ones that showed a drug doesn\'t work — never published. Not because the result was wrong. Because the result wasn\'t profitable. The lock is not just secrecy. It is selective silence.');
+    setCaption('We assume knowledge must be owned.  That without patents and secrecy, no one would invent.  Every pharmaceutical formula.  Every manufacturing process.  Every seed genome.  Locked.');
+    speak('We assume knowledge must be owned. That without patents and secrecy, no one would invent. Every pharmaceutical formula. Every manufacturing process. Every seed genome. Locked.');
   }, tick(e) {
     const t = Math.min(1, e*0.3);
     vaultEdge.material.opacity = t*0.75;
@@ -366,8 +366,8 @@ const STEPS = [
   // 2 — vault pulses (7s)
   { dur:7, enter() {
     setDot(2); setHUD('HUMAN COST'); setProgress(18);
-    setCaption('The locks generate trillions in profit for thousands. The cost: millions of lives that couldn\'t afford what the vault held.');
-    speak('The locks generate trillions in profit for thousands. The cost: millions of lives that couldn\'t afford what the vault held.');
+    setCaption('What you might not know:  50 percent of clinical trials are never published — the ones that weren\'t profitable.  The locks generate trillions for thousands.  The cost: millions of lives that couldn\'t afford what the vault held.');
+    speak('What you might not know: 50 percent of clinical trials are never published — the ones that weren\'t profitable. The locks generate trillions for thousands. The cost: millions of lives that couldn\'t afford what the vault held.');
   }, tick(e) {
     const pulse = 1 + Math.sin(e*4)*0.04;
     vaultGroup.scale.setScalar(pulse);
@@ -381,8 +381,8 @@ const STEPS = [
     setDot(3); setHUD('QUANTUM ACTIVE'); setProgress(28);
     qcGroup.visible = true;
     qcLight.intensity = 0;
-    setCaption('Shor\'s algorithm. A quantum computer large enough. RSA encryption — the lock on every corporate vault — breaks in polynomial time.');
-    speak('Shor\'s algorithm. A quantum computer large enough. RSA encryption — the lock on every corporate vault — breaks in polynomial time.');
+    setCaption('But what if the locks simply broke?  Shor\'s algorithm.  A quantum computer large enough.  RSA encryption — the lock on every corporate vault — breaks in polynomial time.');
+    speak('But what if the locks simply broke? Shor\'s algorithm. A quantum computer large enough. RSA encryption — the lock on every corporate vault — breaks in polynomial time.');
   }, tick(e) {
     qcGroup.rotation.x += 0.015;
     qcGroup.rotation.y += 0.02;

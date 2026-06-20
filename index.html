@@ -256,9 +256,20 @@ body::after {
 // TREE DATA
 // ═══════════════════════════════════════════════════════════════
 
-const TREE = [
-  {
-    id: 'homeless',
+ const TREE = [
+   {
+     id: 'disassembly',
+     title: 'Atoms Are the Bricks of Reality',
+     branch: 'FOUNDATION',
+     desc: 'The core idea. You buy pre-made bricks, then bury them — and buy more. What if you could disassemble anything back into its atoms and rebuild?',
+     diorama: 'dioramas/disassembly.html',
+     pos: [0, 0, 4.2],
+     geo: 'cube',
+     color: '#ffdd66',
+     prereqs: [],
+   },
+   {
+     id: 'homeless',
     title: 'Homelessness of the Future',
     branch: 'SHELTER',
     desc: 'Container. Robot fleet. Fitted clothing from waste in 12 minutes.',
@@ -517,6 +528,7 @@ function mkGeo(t) {
     case 'tetrahedron': return new THREE.TetrahedronGeometry(0.82);
     case 'dodecahedron':return new THREE.DodecahedronGeometry(0.68);
     case 'sphere':      return new THREE.SphereGeometry(0.68, 18, 18);
+    case 'cube':        return new THREE.BoxGeometry(1.0, 0.7, 1.0);
     case 'torusknot':   return new THREE.TorusKnotGeometry(0.48, 0.17, 72, 8);
     case 'torus':       return new THREE.TorusGeometry(0.58, 0.2, 14, 38);
     default:            return new THREE.IcosahedronGeometry(0.72);

@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none; line-height:1.8;
 }
 
@@ -171,13 +171,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -375,8 +375,8 @@ const STEPS = [
     setDot(1); setHUD('WASTE IDENTIFIED'); setProgress(8);
     wastePileGroup.visible = true;
     wasteBoxes.forEach(b => { b.fill.scale.setScalar(0.01); b.edge.scale.setScalar(0.01); });
-    setCaption('One ton of waste.  We pay fifty dollars to bury it.  Then it decomposes, releasing methane — seventy times the warming potential of carbon dioxide — into the atmosphere for thirty years.  We are paying to store a slow catastrophe.');
-    speak('One ton of waste. We pay fifty dollars to bury it. Then it decomposes, releasing methane — seventy times the warming potential of carbon dioxide — into the atmosphere for thirty years. We are paying to store a slow catastrophe.');
+    setCaption('We assume energy is scarce.  That we must drill for it, mine it, burn it — and that it is running out.  One ton of waste:  we pay fifty dollars to bury it.  Then it leaks methane for thirty years — seventy times the warming power of carbon dioxide.  We pay to store a slow catastrophe.');
+    speak('We assume energy is scarce. That we must drill for it, mine it, burn it — and that it is running out. One ton of waste: we pay fifty dollars to bury it. Then it leaks methane for thirty years — seventy times the warming power of carbon dioxide. We pay to store a slow catastrophe.');
   }, tick(e) {
     wasteBoxes.forEach((b, i) => {
       const delay = i * 0.5;
@@ -390,8 +390,8 @@ const STEPS = [
   // 2 — boxes pulse orange (6s)
   { dur:6, enter() {
     setDot(2); setHUD('ENERGY POTENTIAL'); setProgress(18);
-    setCaption('The landfill is the richest mine on earth.  Copper content: 4 to 8 percent.  The ore we mine today: 0.6 percent.  The landfill is ten times richer.  And we also buried the energy.  Hydrocarbons.  Pre-extracted.  Self-replenishing.  We were mining the wrong thing.');
-    speak('The landfill is the richest mine on earth. Copper content: 4 to 8 percent. The ore we mine today: 0.6 percent. The landfill is ten times richer. And we also buried the energy. Hydrocarbons. Pre-extracted. Self-replenishing. We were mining the wrong thing.');
+    setCaption('What you might not know:  the landfill is the richest mine on earth.  Copper content: 4 to 8 percent.  The ore we mine today: 0.6 percent.  Ten times richer.  And buried with it, the energy — hydrocarbons, pre-extracted, self-replenishing.  We were mining the wrong thing.');
+    speak('What you might not know: the landfill is the richest mine on earth. Copper content: 4 to 8 percent. The ore we mine today: 0.6 percent. Ten times richer. And buried with it, the energy — hydrocarbons, pre-extracted, self-replenishing. We were mining the wrong thing.');
   }, tick(e) {
     const pulse = 1 + Math.sin(e*4)*0.08;
     wasteBoxes.forEach(b => {
@@ -414,8 +414,8 @@ const STEPS = [
       wasteFlowArr[i*3+2] = (Math.random()-0.5)*2;
     }
     wasteFlowGeo.attributes.position.needsUpdate = true;
-    setCaption('Feed it to the disintegrator. Plasma at 3000 degrees. Hydrocarbons release hydrogen.');
-    speak('Feed it to the disintegrator. Plasma at 3000 degrees. Hydrocarbons release hydrogen.');
+    setCaption('But what if waste was the fuel?  Feed it to the disintegrator.  Plasma at 3000 degrees.  Hydrocarbons release hydrogen.');
+    speak('But what if waste was the fuel? Feed it to the disintegrator. Plasma at 3000 degrees. Hydrocarbons release hydrogen.');
   }, tick(e) {
     disintGroup.position.y += (0 - disintGroup.position.y)*0.06;
     const t = Math.min(1, e*0.35);

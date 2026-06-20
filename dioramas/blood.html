@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#330011;
+  font-size:9px; letter-spacing:2px; color:#cc5577;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -150,13 +150,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x040002);
+scene.background = new THREE.Color(0x1a0d12);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 12);
 camera.lookAt(0, 1, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
 const keyL = new THREE.DirectionalLight(0xff2244, 1.6);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -353,8 +353,8 @@ const STEPS = [
     setDot(1); setHUD('BLOOD ANALYSIS'); setProgress(8);
     bloodCells.material.opacity = 0.8;
     hbLine.material.opacity = 0.6;
-    setCaption('Blood.  Five billion red blood cells per millilitre.  Two thousand distinct proteins.  Hundreds of hormones, metabolites, enzymes.  Your blood is transmitting the complete molecular story of your body — right now.  We just haven\'t been listening.');
-    speak('Blood. Five billion red blood cells per millilitre. Two thousand distinct proteins. Hundreds of hormones, metabolites, enzymes. Your blood is transmitting the complete molecular story of your body — right now. We just have not been listening.');
+    setCaption('We assume medicine is what happens when you get sick.  You notice a symptom.  You see a doctor.  But your blood is already speaking.  Five billion red cells per millilitre.  Two thousand proteins.  The complete story of your body — right now.');
+    speak('We assume medicine is what happens when you get sick. You notice a symptom. You see a doctor. But your blood is already speaking. Five billion red cells per millilitre. Two thousand proteins. The complete story of your body — right now.');
   }, tick(e) {
     cellFlow += 0.012;
     for (let i = 0; i < cellN; i++) {
@@ -377,8 +377,8 @@ const STEPS = [
   // 2 — the snapshot problem (6s)
   { dur:6, enter() {
     setDot(2); setHUD('SNAPSHOT LIMITATION'); setProgress(18);
-    setCaption('Today: blood test.  One snapshot.  Sent to a lab.  Three days.  A single data point.');
-    speak('Today: blood test. One snapshot. Sent to a lab. Three days. A single data point.');
+    setCaption('What you might not know:  we read this river of data as a single snapshot.  One blood test.  Sent to a lab.  Three days.  A single dot, in a story of millions of signals.');
+    speak('What you might not know: we read this river of data as a single snapshot. One blood test. Sent to a lab. Three days. A single dot, in a story of millions of signals.');
     bloodCells.material.color.set(0x660022);
   }, tick(e) {
     bloodCells.material.opacity = 0.4 + Math.sin(e * 2) * 0.2;
@@ -398,8 +398,8 @@ const STEPS = [
     setDot(3); setHUD('CONTINUOUS SCAN'); setProgress(28);
     bloodCells.material.color.set(0xff1133);
     molCloud.material.opacity = 0.7;
-    setCaption('Now: continuous molecular monitoring.  Every protein.  Every hormone.  Every marker.  In real time.');
-    speak('Now: continuous molecular monitoring. Every protein. Every hormone. Every marker. In real time.');
+    setCaption('But what if we never stopped listening?  Continuous molecular monitoring.  Every protein.  Every hormone.  Every marker.  In real time.');
+    speak('But what if we never stopped listening? Continuous molecular monitoring. Every protein. Every hormone. Every marker. In real time.');
   }, tick(e) {
     scanner.material.opacity = 0.6 + Math.sin(e * 8) * 0.3;
     scanner.position.y = (e % 3) * 1.5;

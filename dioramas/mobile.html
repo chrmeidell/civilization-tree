@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#331100;
+  font-size:9px; letter-spacing:2px; color:#c47a2a;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -150,14 +150,29 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x050200);
-scene.fog = new THREE.FogExp2(0x050200, 0.035);
+function makeSky(topHex, horizonHex) {
+  const c = document.createElement('canvas');
+  c.width = 16; c.height = 256;
+  const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, 0, 256);
+  grad.addColorStop(0.00, topHex);
+  grad.addColorStop(0.52, topHex);
+  grad.addColorStop(0.70, horizonHex);
+  grad.addColorStop(0.78, horizonHex);
+  grad.addColorStop(1.00, topHex);
+  g.fillStyle = grad; g.fillRect(0, 0, 16, 256);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
+  return tex;
+}
+scene.background = makeSky('#1c130c', '#5e3c1e');
+scene.fog = new THREE.FogExp2(0x3c2814, 0.035);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 5, 14);
 camera.lookAt(0, 1, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
 const keyL = new THREE.DirectionalLight(0xff8833, 1.8);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -385,8 +400,8 @@ const STEPS = [
   // 1 — disaster zone (7s)
   { dur:7, enter() {
     setDot(1); setHUD('DISASTER ZONE'); setProgress(8);
-    setCaption('Haiti.  2010.  The earthquake killed 220,000 people.  The world pledged 13 billion dollars.  Thirteen years later, most Haitians still live in rubble.  Not because of a lack of money.  Because you cannot ship a factory.  You can only ship aid.  And aid is not infrastructure.');
-    speak('Haiti. 2010. The earthquake killed 220,000 people. The world pledged 13 billion dollars. Thirteen years later, most Haitians still live in rubble. Not because of a lack of money. Because you cannot ship a factory. You can only ship aid. And aid is not infrastructure.');
+    setCaption('We assume disaster relief means sending aid.  Haiti, 2010.  The earthquake killed 220,000 people.  The world pledged 13 billion dollars.  Thirteen years later, most Haitians still live in rubble.');
+    speak('We assume disaster relief means sending aid. Haiti, 2010. The earthquake killed 220,000 people. The world pledged 13 billion dollars. Thirteen years later, most Haitians still live in rubble.');
   }, tick(e) {
     ruinData.forEach((r, i) => {
       const m = ruinGroup.children[i * 2];
@@ -398,8 +413,8 @@ const STEPS = [
   // 2 — the waiting problem (6s)
   { dur:6, enter() {
     setDot(2); setHUD('AID GAP'); setProgress(18);
-    setCaption('You cannot manufacture aid fast enough.  You cannot ship it far enough.  People wait.');
-    speak('You cannot manufacture aid fast enough. You cannot ship it far enough. People wait.');
+    setCaption('What you might not know:  the problem was never money.  You can ship food, water, blankets.  You cannot ship a factory.  And aid is not infrastructure.');
+    speak('What you might not know: the problem was never money. You can ship food, water, blankets. You cannot ship a factory. And aid is not infrastructure.');
   }, tick(e) {
     floor.material.color.set(0x440800);
     floor.material.opacity = 0.2 + Math.sin(e * 2) * 0.05;
@@ -411,8 +426,8 @@ const STEPS = [
     setDot(3); setHUD('CONTAINER INBOUND'); setProgress(28);
     truckTargetX = -1;
     floor.material.color.set(0x331100);
-    setCaption('A container truck.  Moving.  The factory is not waiting for you.  It is coming to you.');
-    speak('A container truck. Moving. The factory is not waiting for you. It is coming to you.');
+    setCaption('But what if the factory could travel?  A container truck.  Moving.  The factory is not waiting for you.  It is coming to you.');
+    speak('But what if the factory could travel? A container truck. Moving. The factory is not waiting for you. It is coming to you.');
     truckLight.intensity = 1.2;
   }, tick(e) {
     truckGroup.position.x += (truckTargetX - truckGroup.position.x) * 0.06;

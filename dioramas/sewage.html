@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none; line-height:1.8;
 }
 
@@ -153,13 +153,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -362,8 +362,8 @@ const STEPS = [
     }
     sewGeo.attributes.position.needsUpdate = true;
     sewParticles.material.opacity = 0.65;
-    setCaption('Every city. Every day. Billions of litres. Sewage treated, diluted, discharged. Value destroyed.');
-    speak('Every city. Every day. Billions of litres. Sewage treated, diluted, discharged. Value destroyed.');
+    setCaption('We assume sewage is a problem to flush away.  Every city.  Every day.  Billions of litres.  Treated, diluted, discharged.  Forgotten.');
+    speak('We assume sewage is a problem to flush away. Every city. Every day. Billions of litres. Treated, diluted, discharged. Forgotten.');
   }, tick(e) {
     for (let i = 0; i < SPN; i++) {
       sewArr[i*3] += 0.03;
@@ -376,8 +376,8 @@ const STEPS = [
   // 2 — current system text, particles scatter (6s)
   { dur:6, enter() {
     setDot(2); setHUD('CURRENT LOSS'); setProgress(18);
-    setCaption('The phosphorus that fed the crops leaves as sewage.  Discharged into rivers.  Those rivers carry it to the sea.  And that excess phosphorus starves the water of oxygen.  Two hundred dead zones worldwide.  We are poisoning the ocean with our own fertility.');
-    speak('The phosphorus that fed the crops leaves as sewage. Discharged into rivers. Those rivers carry it to the sea. And that excess phosphorus starves the water of oxygen. Two hundred dead zones worldwide. We are poisoning the ocean with our own fertility.');
+    setCaption('What you might not know:  the phosphorus that fed the crops leaves in that sewage.  Discharged into rivers, carried to the sea — where it starves the water of oxygen.  Two hundred dead zones worldwide.  We are poisoning the ocean with our own fertility.');
+    speak('What you might not know: the phosphorus that fed the crops leaves in that sewage. Discharged into rivers, carried to the sea — where it starves the water of oxygen. Two hundred dead zones worldwide. We are poisoning the ocean with our own fertility.');
   }, tick(e) {
     for (let i = 0; i < SPN; i++) {
       const a = Math.random()*Math.PI*2;
@@ -403,8 +403,8 @@ const STEPS = [
       sewArr[i*3+2] = -3 + (Math.random()-0.5)*0.6;
     }
     sewGeo.attributes.position.needsUpdate = true;
-    setCaption('A disintegrator sees it differently. Not waste to treat. A resource stream to harvest.');
-    speak('A disintegrator sees it differently. Not waste to treat. A resource stream to harvest.');
+    setCaption('But what if it was never waste at all?  A disintegrator sees it differently.  Not a problem to treat.  A resource stream to harvest.');
+    speak('But what if it was never waste at all? A disintegrator sees it differently. Not a problem to treat. A resource stream to harvest.');
   }, tick(e) {
     disintGroup.position.y += (0 - disintGroup.position.y) * 0.06;
     const t = Math.min(1, e*0.35);

@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none; line-height:1.8;
 }
 
@@ -162,13 +162,13 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+scene.background = new THREE.Color(0x0c1320);
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 4, 10);
 camera.lookAt(0, 1.5, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -378,8 +378,8 @@ const STEPS = [
     setDot(1); setHUD('SCARCITY ECONOMY'); setProgress(8);
     industryBoxes.forEach(b => { b.g.visible = true; });
     indLight.intensity = 1.5;
-    setCaption('Every great fortune was built on controlling something scarce.  The spice trade.  The oil fields.  The patent portfolio.  The supply route.  Scarcity is not an accident of nature — it is often an architecture of power.');
-    speak('Every great fortune was built on controlling something scarce. The spice trade. The oil fields. The patent portfolio. The supply route. Scarcity is not an accident of nature — it is often an architecture of power.');
+    setCaption('We assume the economy must run on scarcity.  That value comes from rarity.  Every great fortune was built on controlling something scarce — the spice, the oil, the patent, the route.');
+    speak('We assume the economy must run on scarcity. That value comes from rarity. Every great fortune was built on controlling something scarce — the spice, the oil, the patent, the route.');
   }, tick(e) {
     indLight.intensity = 1.5 + Math.sin(e*2)*0.3;
     setProgress(8 + (e/7)*10);
@@ -388,8 +388,8 @@ const STEPS = [
   // 2 — boxes pulse and grow (8s)
   { dur:8, enter() {
     setDot(2); setHUD('INCUMBENT POWER'); setProgress(18);
-    setCaption('Pharmaceutical companies. Mining corporations. Logistics giants. All built to defend and monetize scarcity.');
-    speak('Pharmaceutical companies. Mining corporations. Logistics giants. All built to defend and monetize scarcity.');
+    setCaption('What you might not know:  scarcity is often not nature.  It is architecture.  Pharmaceutical companies.  Mining corporations.  Logistics giants.  All built to defend and monetize it.');
+    speak('What you might not know: scarcity is often not nature. It is architecture. Pharmaceutical companies. Mining corporations. Logistics giants. All built to defend and monetize it.');
   }, tick(e) {
     const pulse = 1 + Math.sin(e*3)*0.05;
     industryBoxes.forEach(b => { b.g.scale.setScalar(pulse + Math.sin(e*2)*0.03); });
@@ -402,8 +402,8 @@ const STEPS = [
     setDot(3); setHUD('SCARCITY COLLAPSES'); setProgress(28);
     disintGroup.visible = true;
     disintGroup.position.y = -2;
-    setCaption('The disintegrator makes material goods nearly free.  The cost floor of physical objects approaches zero.  Think about what that means.  Not cheaper — structurally free.  The way software became free when copying cost nothing.  But for everything physical.');
-    speak('The disintegrator makes material goods nearly free. The cost floor of physical objects approaches zero. Think about what that means. Not cheaper — structurally free. The way software became free when copying cost nothing. But for everything physical.');
+    setCaption('But what if the cost floor of physical things collapsed?  The disintegrator makes material goods nearly free.  Not cheaper — structurally free.  The way software became free when copying cost nothing.  But for everything physical.');
+    speak('But what if the cost floor of physical things collapsed? The disintegrator makes material goods nearly free. Not cheaper — structurally free. The way software became free when copying cost nothing. But for everything physical.');
   }, tick(e) {
     disintGroup.position.y += (0 - disintGroup.position.y)*0.06;
     const t = Math.min(1, e*0.35);

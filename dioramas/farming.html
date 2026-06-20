@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#003322;
+  font-size:9px; letter-spacing:2px; color:#3aa888;
   z-index:45; pointer-events:none; line-height:1.8;
 }
 
@@ -168,13 +168,28 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x010306);
+function makeSky(topHex, horizonHex) {
+  const c = document.createElement('canvas');
+  c.width = 16; c.height = 256;
+  const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, 0, 256);
+  grad.addColorStop(0.00, topHex);
+  grad.addColorStop(0.52, topHex);
+  grad.addColorStop(0.70, horizonHex);
+  grad.addColorStop(0.78, horizonHex);
+  grad.addColorStop(1.00, topHex);
+  g.fillStyle = grad; g.fillRect(0, 0, 16, 256);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
+  return tex;
+}
+scene.background = makeSky('#0c1320', '#36441f');
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 5, 11);
 camera.lookAt(0, 0, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 1.9));
 const keyL = new THREE.DirectionalLight(0x00ffcc, 2);
 keyL.position.set(-3, 8, 5); scene.add(keyL);
 
@@ -384,8 +399,8 @@ const STEPS = [
   // 1 — field visible, phosphorus deficit (8s)
   { dur:8, enter() {
     setDot(1); setHUD('PHOSPHORUS DEFICIT'); setProgress(8);
-    setCaption('Every crop takes phosphorus from the soil. It does not return. Each harvest depletes what took millions of years to form.');
-    speak('Every crop takes phosphorus from the soil. It does not return. Each harvest depletes what took millions of years to form.');
+    setCaption('We assume hunger is about not growing enough food.  It is not.  Every crop takes phosphorus from the soil — and it does not return.  Each harvest depletes what took millions of years to form.');
+    speak('We assume hunger is about not growing enough food. It is not. Every crop takes phosphorus from the soil — and it does not return. Each harvest depletes what took millions of years to form.');
   }, tick(e) {
     field.material.opacity = 0.25 + Math.sin(e*0.8)*0.05;
     setProgress(8 + (e/8)*10);
@@ -395,8 +410,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(2); setHUD('GEOPOLITICAL RISK'); setProgress(18);
     document.getElementById('morocco-overlay').style.opacity = '1';
-    setCaption('Morocco controls 70 percent of the world\'s known phosphate reserves.  At current consumption rates: 300 to 400 years of supply remain.  Then: nothing.  No phosphorus, no synthetic fertilizer.  No synthetic fertilizer, no food for 8 billion people.  This is the most important geopolitical fact almost no one knows.');
-    speak('Morocco controls 70 percent of the world\'s known phosphate reserves. At current consumption rates: 300 to 400 years of supply remain. Then: nothing. No phosphorus, no synthetic fertilizer. No synthetic fertilizer, no food for 8 billion people. This is the most important geopolitical fact almost no one knows.');
+    setCaption('What you might not know:  Morocco controls 70 percent of the world\'s known phosphate.  300 to 400 years of supply remain.  Then: nothing.  No phosphorus, no fertilizer, no food for 8 billion people.  The most important fact almost no one knows.');
+    speak('What you might not know: Morocco controls 70 percent of the world\'s known phosphate. 300 to 400 years of supply remain. Then: nothing. No phosphorus, no fertilizer, no food for 8 billion people. The most important fact almost no one knows.');
   }, tick(e) {
     setProgress(18 + (e/7)*10);
   }},
@@ -405,8 +420,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(3); setHUD('NUTRIENT LOSS'); setProgress(28);
     document.getElementById('morocco-overlay').style.opacity = '0';
-    setCaption('Every kilogram of phosphorus humanity consumes passes through sewage. Lost to rivers. To the sea.');
-    speak('Every kilogram of phosphorus humanity consumes passes through sewage. Lost to rivers. To the sea.');
+    setCaption('But what if it could return to where it came from?  Every kilogram of phosphorus humanity consumes passes through sewage.  Today: lost to rivers.  To the sea.');
+    speak('But what if it could return to where it came from? Every kilogram of phosphorus humanity consumes passes through sewage. Today: lost to rivers. To the sea.');
   }, tick(e) {
     setProgress(28 + (e/7)*10);
   }},

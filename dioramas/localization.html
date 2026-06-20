@@ -89,7 +89,7 @@ body { background:#000; overflow:hidden; font-family:'Courier New',monospace; }
 
 #hud {
   position:fixed; top:20px; left:20px;
-  font-size:9px; letter-spacing:2px; color:#331100;
+  font-size:9px; letter-spacing:2px; color:#c47a2a;
   z-index:45; pointer-events:none;
   line-height:1.8;
 }
@@ -150,13 +150,28 @@ s.width = s.height = '100%'; s.zIndex = '1';
 document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x030200);
+function makeSky(topHex, horizonHex) {
+  const c = document.createElement('canvas');
+  c.width = 16; c.height = 256;
+  const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, 0, 256);
+  grad.addColorStop(0.00, topHex);
+  grad.addColorStop(0.52, topHex);
+  grad.addColorStop(0.70, horizonHex);
+  grad.addColorStop(0.78, horizonHex);
+  grad.addColorStop(1.00, topHex);
+  g.fillStyle = grad; g.fillRect(0, 0, 16, 256);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter;
+  return tex;
+}
+scene.background = makeSky('#14100a', '#3e2c16');
 
 const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 200);
 camera.position.set(0, 8, 16);
 camera.lookAt(0, 0, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+scene.add(new THREE.AmbientLight(0xffffff, 1.7));
 const keyL = new THREE.DirectionalLight(0xffbb44, 1.6);
 keyL.position.set(-4, 10, 5); scene.add(keyL);
 
@@ -368,8 +383,8 @@ const STEPS = [
     cityGlows.forEach(g => { g.intensity = 0.4; });
     resDots.material.color.set(0xff4400);
     resDots.material.opacity = 0.6;
-    setCaption('Your phone was designed in California.  Its chips were fabricated in Taiwan.  Assembled in China.  The rare earth elements came from the Democratic Republic of Congo.  Shipped via Rotterdam.  It touched 43 countries before it reached your pocket.  Any single one of them can stop it.');
-    speak('Your phone was designed in California. Its chips were fabricated in Taiwan. Assembled in China. The rare earth elements came from the Democratic Republic of Congo. Shipped via Rotterdam. It touched 43 countries before it reached your pocket. Any single one of them can stop it.');
+    setCaption('We assume the global supply chain is efficiency.  Progress.  Your phone touched 43 countries before it reached your pocket — designed in California, fabricated in Taiwan, assembled in China, its metals mined in the Congo.');
+    speak('We assume the global supply chain is efficiency. Progress. Your phone touched 43 countries before it reached your pocket — designed in California, fabricated in Taiwan, assembled in China, its metals mined in the Congo.');
   }, tick(e) {
     globalLines.forEach((l, i) => {
       l.material.opacity = 0.35 + Math.sin(e * 2 + i * 0.7) * 0.1;
@@ -388,8 +403,8 @@ const STEPS = [
   // 2 — fragility (6s)
   { dur:6, enter() {
     setDot(2); setHUD('FRAGILITY EXPOSED'); setProgress(18);
-    setCaption('Companies hold three days of inventory.  Just-in-time.  Efficient in calm.  Catastrophic in crisis.  2010: one Icelandic volcano erupted.  Six days.  Five billion euros in losses.  Everything stopped.  The system was not designed to survive.  It was designed to be cheap.');
-    speak('Companies hold three days of inventory. Just-in-time. Efficient in calm. Catastrophic in crisis. 2010: one Icelandic volcano erupted. Six days. Five billion euros in losses. Everything stopped. The system was not designed to survive. It was designed to be cheap.');
+    setCaption('What you might not know:  that is not efficiency.  It is fragility.  Companies hold three days of inventory.  In 2010, one Icelandic volcano stopped everything.  Six days.  Five billion euros in losses.  It was not built to survive.  It was built to be cheap.');
+    speak('What you might not know: that is not efficiency. It is fragility. Companies hold three days of inventory. In 2010, one Icelandic volcano stopped everything. Six days. Five billion euros in losses. It was not built to survive. It was built to be cheap.');
     globalLines.forEach(l => { l.material.color.set(0xff1100); });
   }, tick(e) {
     globalLines.forEach((l, i) => {
@@ -404,8 +419,8 @@ const STEPS = [
   // 3 — global lines dissolve (7s)
   { dur:7, enter() {
     setDot(3); setHUD('DISSOLVING CHAINS'); setProgress(28);
-    setCaption('What if each city processed its own waste into its own resources?  The chain dissolves.');
-    speak('What if each city processed its own waste into its own resources? The chain dissolves.');
+    setCaption('But what if each city processed its own waste into its own resources?  The chain dissolves.');
+    speak('But what if each city processed its own waste into its own resources? The chain dissolves.');
   }, tick(e) {
     const fade = Math.max(0, 1 - e * 0.2);
     globalLines.forEach(l => { l.material.opacity = fade * 0.35; });
