@@ -378,8 +378,8 @@ const STEPS = [
     setDot(1); setHUD('SCARCITY ECONOMY'); setProgress(8);
     industryBoxes.forEach(b => { b.g.visible = true; });
     indLight.intensity = 1.5;
-    setCaption('The economy organizes around one thing: scarcity. Who controls the scarce resource controls the margin.');
-    speak('The economy organizes around one thing: scarcity. Who controls the scarce resource controls the margin.');
+    setCaption('Every great fortune was built on controlling something scarce.  The spice trade.  The oil fields.  The patent portfolio.  The supply route.  Scarcity is not an accident of nature — it is often an architecture of power.');
+    speak('Every great fortune was built on controlling something scarce. The spice trade. The oil fields. The patent portfolio. The supply route. Scarcity is not an accident of nature — it is often an architecture of power.');
   }, tick(e) {
     indLight.intensity = 1.5 + Math.sin(e*2)*0.3;
     setProgress(8 + (e/7)*10);
@@ -402,8 +402,8 @@ const STEPS = [
     setDot(3); setHUD('SCARCITY COLLAPSES'); setProgress(28);
     disintGroup.visible = true;
     disintGroup.position.y = -2;
-    setCaption('The disintegrator makes material goods nearly free. The cost floor of physical objects approaches zero.');
-    speak('The disintegrator makes material goods nearly free. The cost floor of physical objects approaches zero.');
+    setCaption('The disintegrator makes material goods nearly free.  The cost floor of physical objects approaches zero.  Think about what that means.  Not cheaper — structurally free.  The way software became free when copying cost nothing.  But for everything physical.');
+    speak('The disintegrator makes material goods nearly free. The cost floor of physical objects approaches zero. Think about what that means. Not cheaper — structurally free. The way software became free when copying cost nothing. But for everything physical.');
   }, tick(e) {
     disintGroup.position.y += (0 - disintGroup.position.y)*0.06;
     const t = Math.min(1, e*0.35);
@@ -416,8 +416,8 @@ const STEPS = [
   // 4 — boxes shrink and dim (8s)
   { dur:8, enter() {
     setDot(4); setHUD('MOATS DISSOLVING'); setProgress(40);
-    setCaption('Margins compress. Moats dissolve. The machine for converting scarcity into wealth stops.');
-    speak('Margins compress. Moats dissolve. The machine for converting scarcity into wealth stops.');
+    setCaption('Three people currently own more than the bottom 3.5 billion combined.  That wealth is stored in scarce physical assets — land, intellectual property, logistics infrastructure.  When those assets approach free, the moat disappears.  Not by redistribution.  By the cost floor collapsing.');
+    speak('Three people currently own more than the bottom 3.5 billion combined. That wealth is stored in scarce physical assets — land, intellectual property, logistics infrastructure. When those assets approach free, the moat disappears. Not by redistribution. By the cost floor collapsing.');
   }, tick(e) {
     const decay = Math.max(0.2, 1 - e*0.1);
     industryBoxes.forEach(b => {
@@ -447,8 +447,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(6); setHUD('TRUST ECONOMY'); setProgress(60);
     connLines.forEach(l => { l.material.opacity = 0; });
-    setCaption('The corporation of the future is a trust vessel. A reputation institution. Purpose is the competitive variable.');
-    speak('The corporation of the future is a trust vessel. A reputation institution. Purpose is the competitive variable.');
+    setCaption('The corporation of the future does not defend a scarce resource.  It earns trust.  It solves a hard problem nobody else can solve.  Its competitive advantage is judgment, taste, relationships — things that cannot be plasma-gasified and remanufactured.  Purpose is the moat.');
+    speak('The corporation of the future does not defend a scarce resource. It earns trust. It solves a hard problem nobody else can solve. Its competitive advantage is judgment, taste, relationships — things that cannot be plasma-gasified and remanufactured. Purpose is the moat.');
   }, tick(e) {
     const op = Math.min(0.8, e*0.2);
     connLines.forEach((l, i) => {
@@ -484,8 +484,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('CREATIVITY IS CAPITAL', 'The only resource that grows when shared.', true);
-    speak('Creativity is capital. The only resource that grows when shared.');
+    showStatement('CREATIVITY IS CAPITAL', 'Scarcity was architecture · When it collapses, so does the inequality it manufactured', true);
+    speak('Creativity is capital. The only resource that grows when shared. This is not communism. It is not utopia. It is a different scarcity. One built from what humans actually are — curious, creative, relational beings — not from what they can hoard.');
   }, tick(e) {
     camera.position.z = 10 + e*0.28;
     camera.position.y = 4  + e*0.16;

@@ -395,8 +395,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(2); setHUD('GEOPOLITICAL RISK'); setProgress(18);
     document.getElementById('morocco-overlay').style.opacity = '1';
-    setCaption('Morocco controls 70 percent of global phosphate reserves. Every nation\'s food supply depends on it.');
-    speak('Morocco controls 70 percent of global phosphate reserves. Every nation\'s food supply depends on it.');
+    setCaption('Morocco controls 70 percent of the world\'s known phosphate reserves.  At current consumption rates: 300 to 400 years of supply remain.  Then: nothing.  No phosphorus, no synthetic fertilizer.  No synthetic fertilizer, no food for 8 billion people.  This is the most important geopolitical fact almost no one knows.');
+    speak('Morocco controls 70 percent of the world\'s known phosphate reserves. At current consumption rates: 300 to 400 years of supply remain. Then: nothing. No phosphorus, no synthetic fertilizer. No synthetic fertilizer, no food for 8 billion people. This is the most important geopolitical fact almost no one knows.');
   }, tick(e) {
     setProgress(18 + (e/7)*10);
   }},
@@ -439,8 +439,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(5); setHUD('SOIL ENRICHED'); setProgress(50);
     phParticles.material.opacity = 0;
-    setCaption('The soil absorbs what belongs to it. Closed loop. No mining. No dependency. No Morocco.');
-    speak('The soil absorbs what belongs to it. Closed loop. No mining. No dependency. No Morocco.');
+    setCaption('The soil absorbs what belongs to it.  And the nitrogen cycle closes too.  Synthetic nitrogen fertilizer creates nitrous oxide — three hundred times the warming potential of carbon dioxide, ten percent of all human greenhouse emissions.  The closed NPK loop eliminates it.  Entirely.  At source.  No mining.  No dependency.  No Morocco.  No climate cost.');
+    speak('The soil absorbs what belongs to it. And the nitrogen cycle closes too. Synthetic nitrogen fertilizer creates nitrous oxide — three hundred times the warming potential of carbon dioxide, ten percent of all human greenhouse emissions. The closed NPK loop eliminates it. Entirely. At source. No mining. No dependency. No Morocco. No climate cost.');
   }, tick(e) {
     soilRings.forEach((ring, i) => {
       const phase = e * 0.8 - i * 0.3;
@@ -486,8 +486,8 @@ const STEPS = [
     robotGroup.position.set(6, 0, -2.5);
     robotPath = 0;
     wdParticles.material.opacity = 0;
-    setCaption('Autonomous harvest. The loop closes. Food security is no longer a geopolitical weapon.');
-    speak('Autonomous harvest. The loop closes. Food security is no longer a geopolitical weapon.');
+    setCaption('A third of all food produced is wasted before it is eaten.  A third of all the phosphorus.  A third of all the water.  A third of all the nitrogen — and its climate cost.  The disintegrator recovers it all.  From what was lost, the next harvest is fed.  The loop is complete.');
+    speak('A third of all food produced is wasted before it is eaten. A third of all the phosphorus. A third of all the water. A third of all the nitrogen — and its climate cost. The disintegrator recovers it all. From what was lost, the next harvest is fed. The loop is complete.');
   }, tick(e) {
     robotPath += 0.012;
     robotGroup.position.x = Math.cos(robotPath*0.6)*4;
@@ -501,8 +501,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('EVERYONE EATS', 'The oldest scarcity ends.', true);
-    speak('Everyone eats. The oldest scarcity ends.');
+    showStatement('EVERYONE EATS', 'Closed NPK loop · N₂O eliminated · Geopolitical weapon disarmed · The oldest scarcity ends', true);
+    speak('Everyone eats. The phosphorus returns to the soil. The nitrogen cycle closes. The climate cost of agriculture disappears. Morocco\'s leverage dissolves. The oldest scarcity — who gets to eat — ends. Not because we discovered more. Because we stopped wasting what we had.');
   }, tick(e) {
     camera.position.z = 11 + e*0.28;
     camera.position.y = 5  + e*0.16;

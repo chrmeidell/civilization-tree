@@ -353,8 +353,8 @@ const STEPS = [
     setDot(1); setHUD('BLOOD ANALYSIS'); setProgress(8);
     bloodCells.material.opacity = 0.8;
     hbLine.material.opacity = 0.6;
-    setCaption('Blood.  A river of messages.  Billions of molecular signals per millilitre.');
-    speak('Blood. A river of messages. Billions of molecular signals per millilitre.');
+    setCaption('Blood.  Five billion red blood cells per millilitre.  Two thousand distinct proteins.  Hundreds of hormones, metabolites, enzymes.  Your blood is transmitting the complete molecular story of your body — right now.  We just haven\'t been listening.');
+    speak('Blood. Five billion red blood cells per millilitre. Two thousand distinct proteins. Hundreds of hormones, metabolites, enzymes. Your blood is transmitting the complete molecular story of your body — right now. We just have not been listening.');
   }, tick(e) {
     cellFlow += 0.012;
     for (let i = 0; i < cellN; i++) {
@@ -425,8 +425,8 @@ const STEPS = [
   // 4 — data turns to understanding (6s)
   { dur:6, enter() {
     setDot(4); setHUD('MOLECULAR DECODE'); setProgress(38);
-    setCaption('The molecules speak.  Cortisol elevated.  Insulin dropping.  Iron depleted.  The body tells us.');
-    speak('The molecules speak. Cortisol elevated. Insulin dropping. Iron depleted. The body tells us.');
+    setCaption('The molecules speak.  Cortisol elevated.  Insulin dropping.  Iron depleted.  And — three years before the tumor is visible on any scan — a cascade of proteins no healthy cell produces.  Two years before the heart attack, an inflammatory pattern.  The body announces what is coming.  We just need to read it.');
+    speak('The molecules speak. Cortisol elevated. Insulin dropping. Iron depleted. And — three years before the tumor is visible on any scan — a cascade of proteins no healthy cell produces. Two years before the heart attack, an inflammatory pattern. The body announces what is coming. We just need to read it.');
     // Shift mol colors from red to cyan
     for (let i = 0; i < molN; i++) {
       molColors[i*3]   = 0.0;
@@ -487,8 +487,8 @@ const STEPS = [
   // 7 — the closed loop (6s)
   { dur:6, enter() {
     setDot(7); setHUD('LOOP CLOSED'); setProgress(68);
-    setCaption('Not diagnosis.  Not treatment.  A closed loop.  Blood speaks.  System listens.  Body heals.');
-    speak('Not diagnosis. Not treatment. A closed loop. Blood speaks. System listens. Body heals.');
+    setCaption('You don\'t treat the disease.  It never forms.  Medicine stops being reactive — an ambulance at the bottom of the cliff.  It becomes continuous.  A conversation between the body and the system.  The disease is interrupted before it has a name.');
+    speak('You don\'t treat the disease. It never forms. Medicine stops being reactive — an ambulance at the bottom of the cliff. It becomes continuous. A conversation between the body and the system. The disease is interrupted before it has a name.');
     camera.position.set(0, 7, 14);
     camera.lookAt(0, 1.5, -1);
   }, tick(e) {
@@ -508,8 +508,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('THE BODY TELLS US EVERYTHING', 'Continuous · Molecular · Precise · The Loop Is the Medicine', true);
-    speak('The body tells us everything. Every molecule a message. Every signal a diagnosis. The closed loop does not wait for symptoms. It reads the blood. It responds. Medicine becomes a continuous conversation.');
+    showStatement('THE BODY TELLS US EVERYTHING', 'Including what is coming · Continuous · Molecular · The disease is interrupted before it has a name', true);
+    speak('The body tells us everything. Including what is coming. The closed loop does not wait for symptoms — it reads the forecast. Every molecule a message. Every signal a diagnosis. Medicine becomes a continuous conversation between the body and a system that listens without judgment, without delay, without error.');
   }, tick(e) {
     camera.position.z = 14 + e * 0.3;
     camera.position.y = 7 + e * 0.2;

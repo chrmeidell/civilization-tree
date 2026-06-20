@@ -376,8 +376,8 @@ const STEPS = [
   // 2 — current system text, particles scatter (6s)
   { dur:6, enter() {
     setDot(2); setHUD('CURRENT LOSS'); setProgress(18);
-    setCaption('The phosphorus that fed the crops leaves on a truck. Goes to a plant. Gets discharged into a river. Gone.');
-    speak('The phosphorus that fed the crops leaves on a truck. Goes to a plant. Gets discharged into a river. Gone.');
+    setCaption('The phosphorus that fed the crops leaves as sewage.  Discharged into rivers.  Those rivers carry it to the sea.  And that excess phosphorus starves the water of oxygen.  Two hundred dead zones worldwide.  We are poisoning the ocean with our own fertility.');
+    speak('The phosphorus that fed the crops leaves as sewage. Discharged into rivers. Those rivers carry it to the sea. And that excess phosphorus starves the water of oxygen. Two hundred dead zones worldwide. We are poisoning the ocean with our own fertility.');
   }, tick(e) {
     for (let i = 0; i < SPN; i++) {
       const a = Math.random()*Math.PI*2;
@@ -462,8 +462,8 @@ const STEPS = [
     setDot(5); setHUD('NPK RECOVERED'); setProgress(50);
     npkP.visible = true; npkN.visible = true; npkK.visible = true;
     npkLight.intensity = 1.5;
-    setCaption('Phosphorus. Nitrogen. Potassium. Recovered complete. Morocco\'s leverage over global food: gone.');
-    speak('Phosphorus. Nitrogen. Potassium. Recovered complete. Morocco\'s leverage over global food: gone.');
+    setCaption('Phosphorus. Nitrogen. Potassium. Recovered complete.  And something else: the nitrogen in synthetic fertilizer creates nitrous oxide — three hundred times the warming potential of carbon dioxide, ten percent of all greenhouse emissions.  The closed loop eliminates this at source.  Morocco\'s leverage over global food: gone.  The climate leverage of synthetic nitrogen: gone.');
+    speak('Phosphorus. Nitrogen. Potassium. Recovered complete. And something else: the nitrogen in synthetic fertilizer creates nitrous oxide — three hundred times the warming potential of carbon dioxide, ten percent of all greenhouse emissions. The closed loop eliminates this at source. Morocco\'s leverage over global food: gone. The climate leverage of synthetic nitrogen: gone.');
   }, tick(e) {
     const pulse = 1 + Math.sin(e*3)*0.25;
     npkP.scale.setScalar(pulse);
@@ -487,8 +487,8 @@ const STEPS = [
     }
     waterGeo.attributes.position.needsUpdate = true;
     waterParticles.material.opacity = 0.75;
-    setCaption('Clean water out. Hydrogen fuel as byproduct. The plant now generates what it used to consume.');
-    speak('Clean water out. Hydrogen fuel as byproduct. The plant now generates what it used to consume.');
+    setCaption('Clean water out.  Not just treated — atomically clean.  No pharmaceuticals.  No hormones.  No microplastics.  No antibiotics entering the river.  Hydrogen fuel as byproduct.  The plant now generates what it used to consume.');
+    speak('Clean water out. Not just treated — atomically clean. No pharmaceuticals. No hormones. No microplastics. No antibiotics entering the river. Hydrogen fuel as byproduct. The plant now generates what it used to consume.');
   }, tick(e) {
     for (let i = 0; i < WPN; i++) {
       waterArr[i*3]   += (3 + (i%4)*0.5 - waterArr[i*3]) * 0.03;
@@ -504,8 +504,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(7); setHUD('ENERGY POSITIVE'); setProgress(70);
     energyLight.intensity = 0;
-    setCaption('One ton of sewage: net energy surplus. The treatment plant pays for itself and powers the city.');
-    speak('One ton of sewage: net energy surplus. The treatment plant pays for itself and powers the city.');
+    setCaption('Sewage treatment currently consumes 3% of a nation\'s total electricity.  This plant inverts that equation.  Net energy out.  Clean water out.  Nutrients recovered.  The sewage problem became the energy solution.');
+    speak('Sewage treatment currently consumes 3 percent of a nation\'s total electricity. This plant inverts that equation. Net energy out. Clean water out. Nutrients recovered. The sewage problem became the energy solution.');
   }, tick(e) {
     energyLight.intensity = Math.min(3, e*0.4) + Math.sin(e*4)*0.3;
     waterParticles.material.opacity = 0.75;
@@ -522,8 +522,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('ENERGY POSITIVE', 'The sewage plant of the future powers the city.', true);
-    speak('Energy positive. The sewage plant of the future powers the city.');
+    showStatement('WASTE IS THE RESOURCE', 'Energy positive · Atomically clean water · Nutrients recovered · The dead zones heal', true);
+    speak('Waste is the resource. The sewage plant of the future does not consume electricity — it generates it. It does not pollute rivers — it purifies them. It does not lose nutrients — it returns them. The problem was the solution, waiting for the right technology.');
   }, tick(e) {
     camera.position.z = 10 + e*0.28;
     camera.position.y = 4  + e*0.16;

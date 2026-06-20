@@ -375,8 +375,8 @@ const STEPS = [
     setDot(1); setHUD('WASTE IDENTIFIED'); setProgress(8);
     wastePileGroup.visible = true;
     wasteBoxes.forEach(b => { b.fill.scale.setScalar(0.01); b.edge.scale.setScalar(0.01); });
-    setCaption('One ton of waste. Landfill cost: fifty dollars. Energy value: ignored. Every day. Everywhere.');
-    speak('One ton of waste. Landfill cost: fifty dollars. Energy value: ignored. Every day. Everywhere.');
+    setCaption('One ton of waste.  We pay fifty dollars to bury it.  Then it decomposes, releasing methane — seventy times the warming potential of carbon dioxide — into the atmosphere for thirty years.  We are paying to store a slow catastrophe.');
+    speak('One ton of waste. We pay fifty dollars to bury it. Then it decomposes, releasing methane — seventy times the warming potential of carbon dioxide — into the atmosphere for thirty years. We are paying to store a slow catastrophe.');
   }, tick(e) {
     wasteBoxes.forEach((b, i) => {
       const delay = i * 0.5;
@@ -390,8 +390,8 @@ const STEPS = [
   // 2 — boxes pulse orange (6s)
   { dur:6, enter() {
     setDot(2); setHUD('ENERGY POTENTIAL'); setProgress(18);
-    setCaption('The landfill is the richest energy deposit on earth. Hydrocarbons. Pre-extracted. Self-replenishing.');
-    speak('The landfill is the richest energy deposit on earth. Hydrocarbons. Pre-extracted. Self-replenishing.');
+    setCaption('The landfill is the richest mine on earth.  Copper content: 4 to 8 percent.  The ore we mine today: 0.6 percent.  The landfill is ten times richer.  And we also buried the energy.  Hydrocarbons.  Pre-extracted.  Self-replenishing.  We were mining the wrong thing.');
+    speak('The landfill is the richest mine on earth. Copper content: 4 to 8 percent. The ore we mine today: 0.6 percent. The landfill is ten times richer. And we also buried the energy. Hydrocarbons. Pre-extracted. Self-replenishing. We were mining the wrong thing.');
   }, tick(e) {
     const pulse = 1 + Math.sin(e*4)*0.08;
     wasteBoxes.forEach(b => {
@@ -474,8 +474,8 @@ const STEPS = [
     setTimeout(() => { document.getElementById('num-line1').textContent = 'INPUT: 100 – 500 kWh'; }, 600);
     setTimeout(() => { document.getElementById('num-line2').textContent = 'OUTPUT: 789 kWh'; }, 2200);
     setTimeout(() => { document.getElementById('num-line3').textContent = 'SURPLUS: 289 – 689 kWh'; }, 4000);
-    setCaption('Input: 100 to 500 kilowatt hours. Output: 789 kilowatt hours. Per ton. Of waste.');
-    speak('Input: 100 to 500 kilowatt hours. Output: 789 kilowatt hours. Per ton. Of waste.');
+    setCaption('Input: 100 to 500 kilowatt hours.  Output: 789 kilowatt hours.  Per ton of waste.  A city of one million generates 1,000 tons of waste per day.  That is 289 megawatts of surplus power.  A free power plant.  Made of garbage.');
+    speak('Input: 100 to 500 kilowatt hours. Output: 789 kilowatt hours. Per ton of waste. A city of one million generates 1,000 tons of waste per day. That is 289 megawatts of surplus power. A free power plant. Made of garbage.');
   }, tick(e) {
     fuelCellLight.intensity = 2 + Math.sin(e*6)*0.8;
     setProgress(60 + (e/8)*10);
@@ -512,8 +512,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('NET SURPLUS', 'Waste is the fuel. Scarcity was never real.', true);
-    speak('Net surplus. Waste is the fuel. Scarcity was never real.');
+    showStatement('NET SURPLUS', 'Waste is the fuel · Landfill is the mine · The energy crisis was a choice', true);
+    speak('Net surplus. Waste is the fuel. The landfill is the mine. Methane stopped. Copper recovered. 289 megawatts per city per day, from what we were burying. The energy crisis was never a resource problem. It was a technology choice.');
   }, tick(e) {
     camera.position.z = 10 + e*0.28;
     camera.position.y = 4  + e*0.16;

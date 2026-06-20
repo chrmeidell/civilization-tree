@@ -442,8 +442,8 @@ const STEPS = [
     personGroup.visible = true;
     personGroup.scale.setScalar(0.01);
     personLight.intensity = 0;
-    setCaption('A person.  On a street.  One of millions.');
-    speak('A person. On a street. One of millions.');
+    setCaption('A person.  On a street.  Six months.  Not a statistic.  A life interrupted.');
+    speak('A person. On a street. Six months. Not a statistic. A life interrupted.');
   }, tick(e) {
     const t = Math.min(1, e * 0.55);
     personGroup.scale.setScalar(t);
@@ -534,8 +534,8 @@ const STEPS = [
     pGeo.attributes.position.needsUpdate = true;
     particles.material.color.set(0x00ffcc);
     particles.material.opacity = 0.8;
-    setCaption('Waste collected.  Elements recovered.  Clean.');
-    speak('Waste collected. Elements recovered. Clean.');
+    setCaption('The street itself is the feedstock.  Discarded packaging.  Organic waste.  Broken glass.  Plasma at 3000 degrees.  Everything breaks to atoms.');
+    speak('The street itself is the feedstock. Discarded packaging. Organic waste. Broken glass. Plasma at 3000 degrees. Everything breaks to atoms.');
   }, tick(e) {
     contGlow.intensity = 1.5 + Math.sin(e * 6) * 0.7;
     contFill.material.opacity = 0.15 + Math.sin(e * 5) * 0.1;
@@ -570,8 +570,8 @@ const STEPS = [
     setProgress(70);
     particles.material.opacity = 0;
     contGlow.intensity = 0.5;
-    setCaption('Twelve minutes.  Fitted clothing from waste.  Warm.  Dignified.');
-    speak('Twelve minutes. Fitted clothing from waste. Warm. Dignified.');
+    setCaption('Twelve minutes.  Fitted clothing.  A hot meal.  Basic medicine.  A shelter panel.  All from the waste around them.  Warm.  Fed.  Seen.');
+    speak('Twelve minutes. Fitted clothing. A hot meal. Basic medicine. A shelter panel. All from the waste around them. Warm. Fed. Seen.');
   }, tick(e) {
     // Robot moves to person
     robotGroup.position.x += (0.3 - robotGroup.position.x) * 0.03;
@@ -585,8 +585,8 @@ const STEPS = [
     setDot(8); setHUD('MISSION COMPLETE');
     setProgress(80);
     setCaption('');
-    showStatement('NOT CHARITY', 'Infrastructure · Like water · Like electricity', true);
-    speak('This is not charity. This is infrastructure. Like water. Like electricity. The future of homelessness: a solved problem.');
+    showStatement('NOT CHARITY', 'No application · No means test · No shelter lottery · A person. A system. A response.', true);
+    speak('This is not charity. This is infrastructure. No application. No means test. No shelter lottery. Like water, like electricity — it does not ask whether you deserve it. The future of homelessness: a solved problem.');
   }, tick(e) {
     // Camera pull back
     camera.position.z = 10 + e * 0.28;

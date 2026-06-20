@@ -351,8 +351,8 @@ const STEPS = [
     vaultFill.material.opacity = 0;
     lockMesh.material.opacity = 0;
     // fade vault in
-    setCaption('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Every suppressed trial result. Locked.');
-    speak('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Every suppressed trial result. Locked.');
+    setCaption('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Locked.  And 50 percent of all clinical trials — the ones that showed a drug doesn\'t work — never published.  Not because the result was wrong.  Because the result wasn\'t profitable.  The lock is not just secrecy.  It is selective silence.');
+    speak('Every pharmaceutical formula. Every manufacturing process. Every seed genome. Locked. And 50 percent of all clinical trials — the ones that showed a drug doesn\'t work — never published. Not because the result was wrong. Because the result wasn\'t profitable. The lock is not just secrecy. It is selective silence.');
   }, tick(e) {
     const t = Math.min(1, e*0.3);
     vaultEdge.material.opacity = t*0.75;
@@ -459,8 +459,8 @@ const STEPS = [
     setDot(6); setHUD('COMMONS FORMING'); setProgress(60);
     globeGroup.visible = true;
     globeLight.intensity = 0;
-    setCaption('Drug formulas. Manufacturing processes. Agricultural genetics. Energy systems. All in the commons. All free.');
-    speak('Drug formulas. Manufacturing processes. Agricultural genetics. Energy systems. All in the commons. All free.');
+    setCaption('Drug formulas.  Manufacturing processes.  Agricultural genetics.  Energy systems.  All in the commons.  And an AI reads the entire corpus overnight.  Ten thousand drug candidates identified in the first week.  What took pharmaceutical companies a decade now takes a month.  This is what the vault was suppressing.');
+    speak('Drug formulas. Manufacturing processes. Agricultural genetics. Energy systems. All in the commons. And an AI reads the entire corpus overnight. Ten thousand drug candidates identified in the first week. What took pharmaceutical companies a decade now takes a month. This is what the vault was suppressing.');
   }, tick(e) {
     const t = Math.min(1, e*0.3);
     globeEdge.material.opacity = t*0.7;
@@ -482,8 +482,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(7); setHUD('OPEN WORLD'); setProgress(70);
     infoPts.material.opacity = 0;
-    setCaption('Those who can implement it thrive. The knowledge is free. The expertise is the value. The trust is the business.');
-    speak('Those who can implement it thrive. The knowledge is free. The expertise is the value. The trust is the business.');
+    setCaption('We have done this before.  Linux.  Wikipedia.  The human genome — released to the public domain after the private consortium tried to patent it.  Every time humanity opened a commons, the commons grew faster than any private alternative.  Knowledge is the only resource that increases when shared.');
+    speak('We have done this before. Linux. Wikipedia. The human genome — released to the public domain after the private consortium tried to patent it. Every time humanity opened a commons, the commons grew faster than any private alternative. Knowledge is the only resource that increases when shared.');
   }, tick(e) {
     globeGroup.rotation.y += 0.012;
     globeLines.forEach((ln, i) => {
@@ -500,8 +500,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('ALL KNOWLEDGE FREE', 'The commons that was always ours.', true);
-    speak('All knowledge free. The commons that was always ours.');
+    showStatement('ALL KNOWLEDGE FREE', 'Not stolen · Returned · It was always humanity\'s · Paid for by civilization', true);
+    speak('All knowledge free. Not stolen. Returned. It was always humanity\'s. The scientist\'s discovery, paid for by public universities. The drug formula, built on decades of publicly-funded biology. The commons that was always ours, temporarily enclosed. Now open. Forever.');
   }, tick(e) {
     camera.position.z = 10 + e*0.28;
     camera.position.y = 4  + e*0.16;

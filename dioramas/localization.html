@@ -368,8 +368,8 @@ const STEPS = [
     cityGlows.forEach(g => { g.intensity = 0.4; });
     resDots.material.color.set(0xff4400);
     resDots.material.opacity = 0.6;
-    setCaption('Today: every city depends on every other.  Fourteen thousand kilometres of supply chain for a phone.');
-    speak('Today: every city depends on every other. Fourteen thousand kilometres of supply chain for a phone.');
+    setCaption('Your phone was designed in California.  Its chips were fabricated in Taiwan.  Assembled in China.  The rare earth elements came from the Democratic Republic of Congo.  Shipped via Rotterdam.  It touched 43 countries before it reached your pocket.  Any single one of them can stop it.');
+    speak('Your phone was designed in California. Its chips were fabricated in Taiwan. Assembled in China. The rare earth elements came from the Democratic Republic of Congo. Shipped via Rotterdam. It touched 43 countries before it reached your pocket. Any single one of them can stop it.');
   }, tick(e) {
     globalLines.forEach((l, i) => {
       l.material.opacity = 0.35 + Math.sin(e * 2 + i * 0.7) * 0.1;
@@ -388,8 +388,8 @@ const STEPS = [
   // 2 — fragility (6s)
   { dur:6, enter() {
     setDot(2); setHUD('FRAGILITY EXPOSED'); setProgress(18);
-    setCaption('One pandemic.  One war.  One volcano.  The chain snaps.  Shelves empty.  Medicine unavailable.');
-    speak('One pandemic. One war. One volcano. The chain snaps. Shelves empty. Medicine unavailable.');
+    setCaption('Companies hold three days of inventory.  Just-in-time.  Efficient in calm.  Catastrophic in crisis.  2010: one Icelandic volcano erupted.  Six days.  Five billion euros in losses.  Everything stopped.  The system was not designed to survive.  It was designed to be cheap.');
+    speak('Companies hold three days of inventory. Just-in-time. Efficient in calm. Catastrophic in crisis. 2010: one Icelandic volcano erupted. Six days. Five billion euros in losses. Everything stopped. The system was not designed to survive. It was designed to be cheap.');
     globalLines.forEach(l => { l.material.color.set(0xff1100); });
   }, tick(e) {
     globalLines.forEach((l, i) => {
@@ -486,8 +486,8 @@ const STEPS = [
     setDot(7); setHUD('CITY CONSTELLATION'); setProgress(70);
     camera.position.set(0, 16, 20);
     camera.lookAt(0, 0, 0);
-    setCaption('The supply chain was not global efficiency.  It was global fragility.  The city is the unit of resilience.');
-    speak('The supply chain was not global efficiency. It was global fragility. The city is the unit of resilience.');
+    setCaption('The country that controls your supply chain controls your policy.  Taiwan controls chip fabrication.  Saudi Arabia controlled oil.  China controls rare earth processing.  This is not trade — it is leverage.  The city that processes its own waste needs none of it.  Sovereignty is self-sufficiency.');
+    speak('The country that controls your supply chain controls your policy. Taiwan controls chip fabrication. Saudi Arabia controlled oil. China controls rare earth processing. This is not trade — it is leverage. The city that processes its own waste needs none of it. Sovereignty is self-sufficiency.');
   }, tick(e) {
     camera.position.y = 16 + Math.sin(e * 0.3) * 0.5;
     cityGlows.forEach((g, i) => {
@@ -500,8 +500,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('EVERY CITY IS SUFFICIENT', 'Local Orbit · Closed Loop · Waste Is Inventory', true);
-    speak('Every city is sufficient. Not because it is rich. Because it is closed. Waste becomes resource. Landfill becomes factory. The supply chain dissolves into local orbit.');
+    showStatement('EVERY CITY IS SUFFICIENT', 'Not because it is rich · Because it is closed · Sovereignty is self-sufficiency', true);
+    speak('Every city is sufficient. Not because it is rich. Because it is closed. Waste becomes resource. Landfill becomes factory. The supply chain was never efficiency — it was a system of dependency dressed as commerce. The city that owns its own elements owns its own future.');
   }, tick(e) {
     camera.position.z = 20 + e * 0.3;
     camera.position.y = 16 + e * 0.2;

@@ -409,8 +409,8 @@ const STEPS = [
     setDot(1); setHUD('FACILITY ONLINE'); setProgress(8);
     hospitalGroup.visible = true;
     hospitalGroup.scale.setScalar(0.01);
-    setCaption('The modern hospital. A miracle of logistics. Held together by supply chains that span the world.');
-    speak('The modern hospital. A miracle of logistics. Held together by supply chains that span the world.');
+    setCaption('The modern hospital.  A miracle of logistics.  2020: personal protective equipment ran out in six weeks.  Not because there wasn\'t enough — because the supply chain was designed for efficiency, not survival.');
+    speak('The modern hospital. A miracle of logistics. 2020: personal protective equipment ran out in six weeks. Not because there was not enough — because the supply chain was designed for efficiency, not survival.');
   }, tick(e) {
     const t = Math.min(1, e * 0.5);
     hospitalGroup.scale.setScalar(0.01 + t * 0.99);
@@ -499,8 +499,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(5); setHUD('SYNTHESIS ACTIVE'); setProgress(50);
     synthGroup.visible = true;
-    setCaption('A synthesis container receives the order. Medication synthesized to exact formula. On demand.');
-    speak('A synthesis container receives the order. Medication synthesized to exact formula. On demand.');
+    setCaption('A synthesis container receives the order.  Not a generic formula — this patient\'s weight, kidney function, other medications, genetic markers.  Synthesized to the exact molecular structure this body needs.  On demand.');
+    speak('A synthesis container receives the order. Not a generic formula — this patient\'s weight, kidney function, other medications, genetic markers. Synthesized to the exact molecular structure this body needs. On demand.');
   }, tick(e) {
     const t = Math.min(1, e * 0.4);
     synthEdge.material.opacity = t * 0.9;
@@ -537,8 +537,8 @@ const STEPS = [
     robotGroup.visible = true;
     robotGroup.position.set(7, 0, 1);
     synthLight.intensity = 0.5;
-    setCaption('Delivered to the patient. On demand. From waste that entered this morning.');
-    speak('Delivered to the patient. On demand. From waste that entered this morning.');
+    setCaption('Delivered to the patient.  On demand.  From waste that entered this morning.  The entire pharmacy is now an energy bill.  Nothing ordered.  Nothing stored.  Nothing expired.  Nothing out of stock.');
+    speak('Delivered to the patient. On demand. From waste that entered this morning. The entire pharmacy is now an energy bill. Nothing ordered. Nothing stored. Nothing expired. Nothing out of stock.');
   }, tick(e) {
     robotGroup.position.x += (-2 - robotGroup.position.x) * 0.03;
     robotGroup.position.z += (1 - robotGroup.position.z) * 0.03;
@@ -551,8 +551,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('ZERO SUPPLY CHAIN', 'No logistics. No shortages. No stock. No cost.', true);
-    speak('Zero supply chain. No logistics. No shortages. No stock. No cost.');
+    showStatement('THE HOSPITAL CANNOT RUN OUT', 'No supply chain · No stock · No expiry · Synthesized on demand from this morning\'s waste', true);
+    speak('The hospital cannot run out. Of anything. Ever again. No supply chain. No purchase order. No expiry date. No shortage. The constraint was never knowledge — it was logistics. Logistics is gone.');
   }, tick(e) {
     camera.position.z = 10 + e * 0.28;
     camera.position.y = 4  + e * 0.16;

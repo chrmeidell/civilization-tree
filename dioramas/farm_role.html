@@ -383,8 +383,8 @@ const STEPS = [
   // 1 — traditional farm (7s)
   { dur:7, enter() {
     setDot(1); setHUD('TRADITIONAL MODEL'); setProgress(8);
-    setCaption('A field.  Monoculture.  Two harvests a year.  Ninety kilometres to your plate.');
-    speak('A field. Monoculture. Two harvests a year. Ninety kilometres to your plate.');
+    setCaption('A field.  Monoculture.  Two harvests a year.  The food on your plate traveled an average of 2,000 kilometres to reach you.  Refrigerated.  Packaged.  Handled eleven times.  Half its nutritional density lost before you eat it.');
+    speak('A field. Monoculture. Two harvests a year. The food on your plate traveled an average of 2,000 kilometres to reach you. Refrigerated. Packaged. Handled eleven times. Half its nutritional density lost before you eat it.');
   }, tick(e) {
     cropRows.forEach((c, i) => {
       c.position.y = c.geometry.parameters.height/2 + Math.sin(e * 1.2 + i * 0.3) * 0.03;
@@ -427,8 +427,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(4); setHUD('VERTICAL SYSTEMS'); setProgress(38);
     towerGroup.visible = true;
-    setCaption('Vertical farms.  LED-lit. Zero pesticide. Three hundred harvests a year.');
-    speak('Vertical farms. LED-lit. Zero pesticide. Three hundred harvests a year.');
+    setCaption('Vertical farms.  LED-lit.  Zero pesticide.  Harvests every three weeks instead of every six months.  Ninety-five percent less water than field farming — recirculating hydroponics, nothing lost.  Zero transport.  Full nutritional density.  The food exists in the same building as the person eating it.');
+    speak('Vertical farms. LED-lit. Zero pesticide. Harvests every three weeks instead of every six months. Ninety-five percent less water than field farming — recirculating hydroponics, nothing lost. Zero transport. Full nutritional density. The food exists in the same building as the person eating it.');
     for (let i = 0; i < fN; i++) {
       const a = Math.random() * Math.PI * 2;
       const r = 0.5 + Math.random() * 4;
@@ -452,8 +452,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(5); setHUD('ROLE TRANSFORMATION'); setProgress(48);
     personGroup.visible = true;
-    setCaption('The farmer is no longer bound to a field.  She is a systems designer.  She designs growth.');
-    speak('The farmer is no longer bound to a field. She is a systems designer. She designs growth.');
+    setCaption('The farmer is no longer bound to a field.  She designs light spectra.  She designs nutrient cycles.  She selects the microbial community in the substrate.  She reads sensor networks.  She is not a farmer.  She is an ecosystem architect — and she can operate from anywhere on Earth.');
+    speak('The farmer is no longer bound to a field. She designs light spectra. She designs nutrient cycles. She selects the microbial community in the substrate. She reads sensor networks. She is not a farmer. She is an ecosystem architect — and she can operate from anywhere on Earth.');
   }, tick(e) {
     personGroup.position.y = Math.sin(e * 1.1) * 0.03;
     arcRings.forEach((r, i) => {
@@ -500,8 +500,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('THE FARM IS EVERYWHERE', 'Wall · Roof · Window · The Designer Grows the System', true);
-    speak('The farm is not a place. It is a role. A systems designer grows food wherever light falls, wherever water flows, wherever a surface exists. The farm is everywhere.');
+    showStatement('THE FARM IS EVERYWHERE', '95% less water · Zero transport · Every surface · The ecosystem architect replaces the farmer', true);
+    speak('The farm is not a place. It is a role. An ecosystem architect grows food wherever light falls, wherever water flows, wherever a surface exists. The agricultural land freed from this could rewild — an entire continent returned to forest. The denominator restored. The farm is everywhere.');
   }, tick(e) {
     camera.position.z = 16 + e * 0.3;
     camera.position.y = 9 + e * 0.18;

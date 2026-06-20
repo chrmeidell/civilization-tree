@@ -372,8 +372,8 @@ const STEPS = [
   { dur:7, enter() {
     setDot(1); setHUD('DEAD ZONE DETECTED'); setProgress(8);
     ocean.material.color.set(0x110022);
-    setCaption('Three hundred thousand square kilometres.  No oxygen.  No life.  A dead zone.');
-    speak('Three hundred thousand square kilometres. No oxygen. No life. A dead zone.');
+    setCaption('The Gulf of Mexico.  22,000 square kilometres.  No oxygen.  No fish.  No life.  The Baltic Sea: 70,000 square kilometres, the same.  Two hundred dead zones worldwide — and growing.  Created by us.  With fertilizer.');
+    speak('The Gulf of Mexico. 22,000 square kilometres. No oxygen. No fish. No life. The Baltic Sea: 70,000 square kilometres, the same. Two hundred dead zones worldwide — and growing. Created by us. With fertilizer.');
   }, tick(e) {
     deadSpheres.forEach((d, i) => {
       d.mesh.position.y = Math.sin(e * 0.8 + i) * 0.08;
@@ -414,8 +414,8 @@ const STEPS = [
   // 3 — introducing phytoplankton (7s)
   { dur:7, enter() {
     setDot(3); setHUD('RESTORATION SEEDING'); setProgress(28);
-    setCaption('Phytoplankton.  Two micrometres.  Produces half of Earth\'s oxygen.  We seed them back.');
-    speak('Phytoplankton. Two micrometres. Produces half of Earth\'s oxygen. We seed them back.');
+    setCaption('Phytoplankton.  Two micrometres.  Produces half of Earth\'s oxygen.  The base of the entire marine food chain.  Absorbs 30 percent of all human carbon emissions.  The most important organism on this planet, and it is invisible to the naked eye.  Close the nitrogen loop — from the farming diorama — and the runoff stops.  The bloom returns on its own.');
+    speak('Phytoplankton. Two micrometres. Produces half of Earth\'s oxygen. The base of the entire marine food chain. Absorbs 30 percent of all human carbon emissions. The most important organism on this planet, and it is invisible to the naked eye. Close the nitrogen loop — and the runoff stops. The bloom returns on its own.');
     // Shift to green
     for (let i = 0; i < N; i++) {
       pColors[i*3]   = 0.0;
@@ -490,8 +490,8 @@ const STEPS = [
       t.ce.scale.setScalar(0.01);
     });
     camera.position.set(0, 5, 12);
-    setCaption('The canopy returns.  Root networks couple with microbiome.  The system regulates itself.');
-    speak('The canopy returns. Root networks couple with microbiome. The system regulates itself.');
+    setCaption('The canopy returns.  Forests are not just carbon stores — they are water pumps.  A single tree transpires 400 litres of water per day.  A forest pulls moisture from the coast and carries it thousands of kilometres inland.  Without forest, the continent dries.  The mycelium beneath: 2.5 miles of fungal threads per teaspoon of soil.  The internet of the forest.  Restored.');
+    speak('The canopy returns. Forests are not just carbon stores — they are water pumps. A single tree transpires 400 litres of water per day. A forest pulls moisture from the coast and carries it thousands of kilometres inland. Without forest, the continent dries. The mycelium beneath: 2.5 miles of fungal threads per teaspoon of soil. The internet of the forest. Restored.');
   }, tick(e) {
     const t = Math.min(1, e * 0.22);
     trees.forEach((tr, i) => {
@@ -509,8 +509,8 @@ const STEPS = [
   { dur:6, enter() {
     setDot(7); setHUD('PLANETARY SCALE'); setProgress(68);
     globeGroup.visible = true;
-    setCaption('At scale: phytoplankton, forests, soil — the three regulators.  Restore them.  Earth breathes again.');
-    speak('At scale: phytoplankton, forests, soil — the three regulators. Restore them. Earth breathes again.');
+    setCaption('These systems don\'t degrade gradually.  They flip.  Like a glass of water tilting — nothing changes, nothing changes, nothing changes — then everything changes at once.  We do not know exactly where the edge is.  We know we are approaching it.  Restore the regulators before the flip.  There is no recovery from the other side.');
+    speak('These systems don\'t degrade gradually. They flip. Like a glass of water tilting — nothing changes, nothing changes, nothing changes — then everything changes at once. We do not know exactly where the edge is. We know we are approaching it. Restore the regulators before the flip. There is no recovery from the other side.');
     camera.position.set(0, 8, 16);
     camera.lookAt(0, 2, -4);
   }, tick(e) {
@@ -524,8 +524,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('RESTORE THE DENOMINATOR', 'Phytoplankton · Forests · Soil · The Three Regulators', true);
-    speak('We did not reduce the numerator. We restored the denominator. The living systems that make Earth habitable. The breath of the planet. Restored.');
+    showStatement('RESTORE THE DENOMINATOR', 'Before the flip · Phytoplankton · Forests · Soil · The Three Regulators · There is no recovery from the other side', true);
+    speak('We did not reduce the numerator. We restored the denominator. Not carbon capture — the living systems that absorb carbon for free, that have been doing it for 3 billion years, that we broke in 200. Phytoplankton. Forests. Soil. The three regulators. Restored before the flip.');
   }, tick(e) {
     camera.position.z = 16 + e * 0.3;
     camera.position.y = 8  + e * 0.2;

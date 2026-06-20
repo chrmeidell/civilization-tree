@@ -385,8 +385,8 @@ const STEPS = [
   // 1 — disaster zone (7s)
   { dur:7, enter() {
     setDot(1); setHUD('DISASTER ZONE'); setProgress(8);
-    setCaption('An earthquake.  A flood.  Infrastructure gone.  Supply chain: severed.  Aid: weeks away.');
-    speak('An earthquake. A flood. Infrastructure gone. Supply chain: severed. Aid: weeks away.');
+    setCaption('Haiti.  2010.  The earthquake killed 220,000 people.  The world pledged 13 billion dollars.  Thirteen years later, most Haitians still live in rubble.  Not because of a lack of money.  Because you cannot ship a factory.  You can only ship aid.  And aid is not infrastructure.');
+    speak('Haiti. 2010. The earthquake killed 220,000 people. The world pledged 13 billion dollars. Thirteen years later, most Haitians still live in rubble. Not because of a lack of money. Because you cannot ship a factory. You can only ship aid. And aid is not infrastructure.');
   }, tick(e) {
     ruinData.forEach((r, i) => {
       const m = ruinGroup.children[i * 2];
@@ -429,8 +429,8 @@ const STEPS = [
     deployGroup.visible = true;
     deployGroup.position.set(-1, 0, 0);
     truckGroup.visible = false;
-    setCaption('It deploys on site.  No foundation required.  Power from its own energy harvest.  Operational in minutes.');
-    speak('It deploys on site. No foundation required. Power from its own energy harvest. Operational in minutes.');
+    setCaption('It deploys on site.  No foundation required.  The rubble around it — crushed concrete yields calcium, aluminum, silica.  Bent rebar yields iron.  Shattered glass yields silica again.  The disaster created the factory\'s feedstock.  The container\'s own disintegrator processes debris for power.  Self-sufficient.  Operational in minutes.');
+    speak('It deploys on site. No foundation required. The rubble around it — crushed concrete yields calcium, aluminum, silica. Bent rebar yields iron. Shattered glass yields silica again. The disaster created the factory\'s feedstock. The container\'s own disintegrator processes debris for power. Self-sufficient. Operational in minutes.');
   }, tick(e) {
     const t = Math.min(1, e * 0.25);
     dcFill.material.opacity = t * 0.25;
@@ -484,8 +484,8 @@ const STEPS = [
   // 7 — people receive (6s)
   { dur:6, enter() {
     setDot(7); setHUD('DELIVERY COMPLETE'); setProgress(68);
-    setCaption('Clothing to fit.  Medicine for this person\'s exact condition.  Shelter assembled.  Not generic.  Personal.');
-    speak('Clothing to fit. Medicine for this person\'s exact condition. Shelter assembled. Not generic. Personal.');
+    setCaption('Clothing to fit.  Medicine synthesized for this person\'s exact condition.  Shelter assembled.  And: identification documents reprinted.  The displaced person is also administratively erased — no ID, no legal status, invisible to every system.  The container gives them back their name.  Not generic.  Personal.  Complete.');
+    speak('Clothing to fit. Medicine synthesized for this person\'s exact condition. Shelter assembled. And: identification documents reprinted. The displaced person is also administratively erased — no ID, no legal status, invisible to every system. The container gives them back their name. Not generic. Personal. Complete.');
     camera.position.set(2, 6, 14);
     camera.lookAt(0, 1, 0);
   }, tick(e) {
@@ -501,8 +501,8 @@ const STEPS = [
   { dur:8, enter() {
     setDot(8); setHUD('MISSION COMPLETE'); setProgress(80);
     setCaption('');
-    showStatement('MANUFACTURING COMES TO YOU', 'Mobile · Autonomous · Zero Supply Chain · Need Is the Address', true);
-    speak('Manufacturing comes to you. The factory is not a building. It is a vehicle. It travels to the need. Disaster zones, refugee camps, isolated villages. The address is the need itself.');
+    showStatement('MANUFACTURING COMES TO YOU', '100 million displaced people · Rubble is the feedstock · The address is the need itself', true);
+    speak('Manufacturing comes to you. One hundred million people are displaced right now. Each one waiting for aid that arrives too late, in the wrong form, for the wrong person. The factory is not a building. It is a vehicle. It travels to the need. The rubble is the raw material. The disaster is the address. And for the first time in human history — the response arrives before the crisis hardens into permanence.');
   }, tick(e) {
     camera.position.z = 14 + e * 0.3;
     camera.position.y = 6 + e * 0.2;
